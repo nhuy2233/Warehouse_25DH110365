@@ -1,0 +1,32 @@
+﻿@model List<Warehouse_25DH110365.Models.Product>
+@{ ViewBag.Title = "Tra cứu hàng hóa"; }
+
+<h2>Tra cứu hàng hóa</h2>
+
+<form method="get" action="@Url.Action("Search", "Products")" class="form-inline" style="margin-bottom:15px">
+    <input type="text" name="keyword" class="form-control" placeholder="Tên sản phẩm" value="@ViewBag.Keyword" />
+
+    <select name="status" class="form-control">
+        <option value="">-- Mọi tình trạng --</option>
+        <option value="out" @((string)ViewBag.Status == "out" ? "selected" : "")>Hết hàng (0)</option>
+        <option value="low" @((string)ViewBag.Status == "low" ? "selected" : "")>Sắp hết (1–4)</option>
+        <option value="ok" @((string)ViewBag.Status == "ok" ? "selected" : "")>Đủ hàng (≥5)</option>
+    </select>
+
+    <select name="sort" class="form-control">
+        <option value="">-- Không sắp xếp --</option>
+        <option value="asc" @((string)ViewBag.Sort == "asc" ? "selected" : "")>Giá tăng dần</option>
+        <option value="desc" @((string)ViewBag.Sort == "desc" ? "selected" : "")>Giá giảm dần</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary">Tìm</button>
+</form>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning">Không tìm thấy sản phẩm phù hợp.</div>
+}
+else
+{
+    @Html.Partial("_ProductTable", Model)
+}

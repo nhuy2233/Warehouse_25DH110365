@@ -1,0 +1,40 @@
+﻿@model Warehouse_25DH110365.Models.Product
+@{
+    ViewBag.Title = "Sửa sản phẩm";
+    var errors = ViewBag.Errors as List<string>;
+}
+
+<h2>Sửa sản phẩm</h2>
+@if (errors != null)
+{
+    <div class="alert alert-danger">
+        <ul>@foreach (var e in errors)
+        {<li>@e</li>}</ul>
+    </div>
+}
+
+<form method="post" action="@Url.Action("Edit", "Products")" style="max-width:500px">
+    <input type="hidden" name="id" value="@Model.ProductID" />
+    <div class="form-group">
+        <label>Mã sản phẩm (không sửa)</label>
+        <input class="form-control" value="@Model.ProductID" readonly />
+    </div>
+    <div class="form-group">
+        <label>Tên sản phẩm</label>
+        <input type="text" name="ProductName" class="form-control" value="@(ViewBag.InName ?? Model.ProductName)" />
+    </div>
+    <div class="form-group">
+        <label>Danh mục</label>
+        <input type="text" name="Category" class="form-control" value="@(ViewBag.InCat ?? Model.Category)" />
+    </div>
+    <div class="form-group">
+        <label>Đơn giá</label>
+        <input type="text" name="Price" class="form-control" value="@(ViewBag.InPrice ?? Model.Price.ToString("0.##"))" />
+    </div>
+    <div class="form-group">
+        <label>Số lượng (không sửa)</label>
+        <input class="form-control" value="@Model.Quantity" readonly />
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+</form>

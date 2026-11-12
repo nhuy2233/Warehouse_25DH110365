@@ -1,0 +1,9 @@
+﻿@model List<Warehouse_25DH110365.Models.Product>
+@{ ViewBag.Title = "Danh sách sản phẩm"; }
+
+<h2>Danh sách sản phẩm</h2>
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-success">@TempData["Msg"]</div>
+}
+@Html.Partial("_ProductTable", Model)

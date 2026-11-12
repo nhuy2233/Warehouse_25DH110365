@@ -1,0 +1,8 @@
+﻿@{ ViewBag.Title = "Thống kê"; }
+
+<h2>Thống kê kết quả kiểm kê</h2>
+<table class="table table-bordered" style="max-width:500px">
+    <tr><th>Số lượng sản phẩm</th><td>@ViewBag.Total</td></tr>
+    <tr><th>Số sản phẩm hết hàng</th><td>@ViewBag.OutOfStock</td></tr>
+    <tr><th>Tổng giá trị hàng tồn</th><td>@(((decimal)ViewBag.TotalValue).ToString("N0")) VNĐ</td></tr>
+</table>
